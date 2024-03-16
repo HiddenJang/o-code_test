@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd
 
+import matplotlib
 import matplotlib.pyplot as plt
-#import matplotlib.animation as animation
+import matplotlib.animation as animation
 
 matplotlib.use('QtAgg')
 
@@ -53,14 +54,6 @@ if __name__ == '__main__':
 
     ## Построение гистограммы распределения Евклидовых расстояний между различными парами векторов в зависимости от количества сочетаний ##
     df = pd.DataFrame(distances)
-    print(df)
-    plt.hist(df)
+    plt.hist(df, bins=int(df[0].max()/0.1))
     plt.show()
-    # ydata = distances
-    # xdata = [i for i in range(len(distances))]
-    # plt.xlabel('Количество расстояний')
-    # plt.ylabel('Величина Евклидова расстояния')
-    # plt.xticks(arange(0, len(distances), len(distances)/10))
-    # plt.bar(xdata, ydata)
-    # plt.show()
 
