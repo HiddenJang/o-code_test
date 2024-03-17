@@ -17,7 +17,6 @@ def calculate_distances(data_file_name: str) -> pd.DataFrame:
     ## В связи с ограничением по количеству элементов структур данных, возможным видится следующий вариант:
     ## посчитать количество каждого расстояния округленного до 0.1 (меньшие значения не подлежат отрисовке)
     ## и потом построить гистограмму распределения на основе сформированных данных
-
     df_for_rendering = pd.DataFrame()
     df_for_rendering["dist_amount"] = []
     df_for_rendering["distance"] = []
@@ -41,7 +40,7 @@ def calculate_distances(data_file_name: str) -> pd.DataFrame:
                 df_for_rendering.iat[row_index, 0] = row_df.iat[0, 0] + 1
             else:
                 new_row_df = pd.DataFrame([{"dist_amount": 1, "distance": round(euclid_distance_solved, 1)}])
-                df_for_rendering = df_for_rendering._append(new_row_df, ignore_index=True)
+                df_for_rendering = pd.concat([df_for_rendering, new_row_df], ignore_index=True)
 
             if not vector_first and vector_second:
                 max_distance_vectors_numbers = [vector_first, vector_second]
